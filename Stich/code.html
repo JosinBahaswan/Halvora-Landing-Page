@@ -1,0 +1,1102 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="id" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>HALVORA — The Essential Daily Tee | Clean Editorial Collection</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "page-bg": "#FAF9F6",
+            "surface-subtle": "#F4F3EE",
+            "charcoal-dark": "#1E1E1E",
+            "charcoal-soft": "#333333",
+            "secondary": "#686866",
+            "primary": "#5F6F52",
+            "sage-deep": "#4E5C43",
+            "sage-muted": "#E7EDE3",
+            "shopee-orange": "#EE4D2D",
+            "shopee-orange-hover": "#D83E1F",
+            "swatch-black": "#18181A",
+            "swatch-charcoal": "#4C4E52",
+            "swatch-white": "#FDFDFD"
+          },
+          "fontFamily": {
+            "sans": ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+  /* Base custom motion styles */
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 1.5px;
+    background-color: #1E1E1E;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Micro lift buttons */
+  .btn-interactive {
+    transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, background-color 0.2s ease;
+    will-change: transform;
+  }
+  .btn-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px -4px rgba(30, 30, 30, 0.16);
+  }
+  .btn-interactive:active {
+    transform: translateY(1px) scale(0.985);
+  }
+
+  /* Animated entrance classes */
+  .fade-up-init {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .fade-up-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Luxury Hero Lookbook 3D & Parallax Float Effects */
+  .lookbook-stage {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+
+  @keyframes ambientFloatPrimary {
+    0%, 100% {
+      transform: translateY(0px) translateZ(0px);
+    }
+    50% {
+      transform: translateY(-9px) translateZ(12px);
+    }
+  }
+
+  @keyframes ambientFloatSecondary {
+    0%, 100% {
+      transform: translateY(0px) rotate(2.5deg) translateZ(28px);
+    }
+    50% {
+      transform: translateY(-14px) rotate(1deg) translateZ(36px);
+    }
+  }
+
+  .float-primary {
+    animation: ambientFloatPrimary 6.5s ease-in-out infinite;
+  }
+
+  .float-secondary {
+    animation: ambientFloatSecondary 7.8s ease-in-out infinite 0.6s;
+  }
+
+  /* Interactive Lookbook Card & Glass Glare Streak */
+  .lookbook-interactive-card {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: box-shadow 0.5s ease, border-color 0.4s ease;
+    will-change: transform;
+  }
+
+  .lookbook-glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.08) 45%, transparent 75%);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    mix-blend-mode: overlay;
+    z-index: 20;
+  }
+
+  .lookbook-interactive-card:hover .lookbook-glare {
+    opacity: 1;
+  }
+
+  /* Soft reflection sweep line on hover */
+  .lookbook-interactive-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      60deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.22) 48%,
+      rgba(255, 255, 255, 0.38) 50%,
+      rgba(255, 255, 255, 0.12) 53%,
+      transparent 64%
+    );
+    transform: translateX(-100%) rotate(25deg);
+    transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+    pointer-events: none;
+    z-index: 15;
+  }
+
+  .lookbook-interactive-card:hover::before {
+    transform: translateX(100%) rotate(25deg);
+  }
+
+  /* Star shine effect */
+  .star-group:hover .star-icon {
+    animation: starPulse 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  .star-group:hover .star-icon:nth-child(1) { animation-delay: 0.03s; }
+  .star-group:hover .star-icon:nth-child(2) { animation-delay: 0.08s; }
+  .star-group:hover .star-icon:nth-child(3) { animation-delay: 0.13s; }
+  .star-group:hover .star-icon:nth-child(4) { animation-delay: 0.18s; }
+  .star-group:hover .star-icon:nth-child(5) { animation-delay: 0.23s; }
+
+  @keyframes starPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.22) rotate(6deg); color: #d97706; }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+
+  /* Catalog card animations */
+  .catalog-card {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  }
+  .catalog-card:hover {
+    transform: translateY(-4px);
+  }
+  .catalog-card .card-img {
+    transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .catalog-card:hover .card-img {
+    transform: scale(1.05);
+  }
+  .catalog-arrow {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .catalog-card:hover .catalog-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Catalog switch transitions */
+  .catalog-grid {
+    transition: opacity 0.32s cubic-bezier(0.4, 0, 0.2, 1), transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .catalog-grid.tab-transitioning {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  /* Lens zoom image container */
+  .craft-card {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .craft-card:hover {
+    border-color: rgba(30,30,30,0.22);
+    box-shadow: 0 10px 25px -8px rgba(0,0,0,0.06);
+  }
+  .craft-img {
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .craft-card:hover .craft-img {
+    transform: scale(1.06);
+  }
+
+  /* Size table row highlight */
+  .size-row {
+    transition: background-color 0.18s ease, transform 0.18s ease;
+    cursor: pointer;
+  }
+  .size-row:hover {
+    background-color: rgba(231, 237, 227, 0.45) !important;
+  }
+  .size-row.is-selected {
+    background-color: #E7EDE3 !important;
+    position: relative;
+  }
+  .size-pill {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .size-pill:hover, .size-pill.active {
+    background-color: #1E1E1E;
+    color: #FAF9F6;
+    border-color: #1E1E1E;
+    transform: translateY(-1px);
+  }
+
+  /* Review card hover glow */
+  .review-card {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+  .review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 28px -10px rgba(78, 92, 67, 0.12);
+    border-color: rgba(95, 111, 82, 0.3);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::after, ::before {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .fade-up-init {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .float-primary, .float-secondary {
+      animation: none !important;
+    }
+  }
+</style>
+<style class="">
+  @keyframes shineSweep {
+    0% { transform: translateX(-180%) skewX(-20deg); }
+    100% { transform: translateX(260%) skewX(-20deg); }
+  }
+  .btn-sheen {
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .btn-sheen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    transform: translateX(-180%) skewX(-20deg);
+    pointer-events: none;
+  }
+  .btn-sheen:hover::after {
+    animation: shineSweep 0.85s ease-in-out;
+  }
+  .btn-sheen-light::after {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  }
+</style></head>
+<body class="bg-page-bg text-charcoal-dark antialiased font-sans selection:bg-sage-muted selection:text-sage-deep min-h-screen flex flex-col justify-between">
+<!-- 1. Minimal Announcement Bar -->
+<aside class="bg-charcoal-dark text-stone-300 py-2.5 px-4 text-center border-b border-charcoal-soft/30 text-xs tracking-wide relative z-50">
+<div class="max-w-7xl mx-auto flex items-center justify-center gap-3">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+<p class="">
+      Edisi Khusus Shopee Official: Gratis Ongkir &amp; Diskon Paket Bundling 3 Pcs.
+    </p>
+<a class="underline hover:text-white transition-colors ml-1 inline-flex items-center gap-0.5 group" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank">
+<span class="">Klaim Voucher Toko</span>
+</a>
+</div>
+</aside>
+<!-- 2. Clean Editorial Navigation with Dynamic Elevation Shift -->
+<header class="sticky top-0 z-40 bg-page-bg/90 backdrop-blur-md border-b border-charcoal-dark/10 transition-all duration-300" id="main-nav">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20 transition-[height] duration-300" id="nav-container">
+<!-- Brand Logo -->
+<a class="flex items-center gap-3.5 group" href="#">
+<img alt="HALVORA Logo" class="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-105 group-hover:opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaYLSK7FT9vt4JsUxAsRqTiivgYl1gh9aU5JMrVgBGrW1bg9ncohy0kHFkmTaQqPdT4Dhk_mfazfJVYFPGDqNr-4qvuaymkLxvla4gag05vtHzOptJ9DH9EGLlaHBrSuJvDxYdJc82DqU-UTH7Qg8lZUpzaZyaTTuVmBFAZ0obJugFoUEWbIzFd6s3hM9J_8WonU7KoP65u_vqwBEpL4BmGNIKfF8vtyyNkrDBbBU3-zfLhOhfHyADT3gCRzm8n9fhALc">
+<span class="text-lg font-semibold tracking-[0.2em] text-charcoal-dark uppercase transition-colors group-hover:text-primary">
+        HALVORA
+      </span>
+</a>
+<!-- Minimalist Desktop Nav with animated hover underlines -->
+<nav class="hidden md:flex items-center gap-9 text-sm text-secondary font-medium tracking-wide">
+<a class="nav-link hover:text-charcoal-dark transition-colors py-1" href="#katalog">Katalog</a>
+<a class="nav-link hover:text-charcoal-dark transition-colors py-1" href="#craftsmanship">Material &amp; Konstruksi</a>
+<a class="nav-link hover:text-charcoal-dark transition-colors py-1" href="#panduan-ukuran">Panduan Ukuran</a>
+<a class="nav-link hover:text-charcoal-dark transition-colors py-1" href="#ulasan">Ulasan</a>
+</nav>
+<!-- Subdued Nav Shopee Link (Outline / Clean + interactive lift) -->
+<div class="flex items-center gap-4">
+<a class="btn-interactive btn-sheen inline-flex items-center gap-2 bg-charcoal-dark hover:bg-charcoal-soft text-page-bg border border-charcoal-dark px-4 py-2 rounded text-xs font-semibold tracking-wider uppercase shadow-xs group overflow-hidden" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[15px] transition-transform duration-200 group-hover:scale-110">shopping_bag</span><span class="">Shopee Store</span></a>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- 3. Minimalist Editorial Hero Section with Staggered Entrance & Interactive Hover -->
+<section class="py-14 md:py-24 border-b border-charcoal-dark/10 overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<!-- Hero Copy (Staggered items) -->
+<div class="lg:col-span-7 space-y-7">
+<h1 class="fade-up-init text-4xl md:text-5xl lg:text-[54px] font-semibold text-charcoal-dark tracking-tight leading-[1.15] fade-up-active" style="transition-delay: 150ms;">
+            The Essential Daily Tee — Kenyamanan Katun Murni Tanpa Kompromi.
+          </h1>
+<p class="fade-up-init text-secondary text-base md:text-lg font-normal leading-relaxed max-w-xl fade-up-active" style="transition-delay: 250ms;">
+            Siluet Regular Fit presisi yang dirancang untuk kesempurnaan harian. Ditenun dari serat kapas combed alami dalam dua opsi karakter: 24s berstruktur kokoh atau 30s sejuk bernapas.
+          </p>
+<!-- Single Line Minimalist Editorial Spec -->
+<div class="fade-up-init pt-1 text-xs md:text-sm text-secondary font-medium tracking-wide flex flex-wrap items-center gap-y-2 fade-up-active" style="transition-delay: 350ms;">
+<span class="hover:text-charcoal-dark transition-colors cursor-default">100% Combed Cotton</span>
+<span class="mx-3 text-charcoal-dark/25">•</span>
+<span class="hover:text-charcoal-dark transition-colors cursor-default">Ukuran XS – 5XL</span>
+</div>
+<!-- Restrained Single Shopee CTA + Secondary Link -->
+<div class="fade-up-init flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-3 fade-up-active" style="transition-delay: 450ms;">
+<a class="btn-interactive btn-sheen inline-flex justify-center items-center gap-2.5 bg-shopee-orange hover:bg-shopee-orange-hover text-white px-7 py-3.5 rounded text-sm font-semibold tracking-wide shadow-sm group overflow-hidden" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-base transition-transform duration-200 group-hover:scale-110">shopping_bag</span><span class="">Beli di Shopee Mall</span></a>
+<a class="btn-interactive inline-flex justify-center items-center gap-2 border border-charcoal-dark/20 hover:border-charcoal-dark text-charcoal-dark px-6 py-3.5 rounded text-sm font-medium tracking-wide group" href="#katalog">
+<span class="">Lihat Katalog</span>
+<span class="material-symbols-outlined text-base transition-transform duration-200 group-hover:translate-x-1">north_east</span></a>
+</div>
+<!-- Calmer Rating Line with micro-pulse on star hover -->
+<div class="fade-up-init flex items-center gap-2.5 pt-2 text-xs text-secondary star-group cursor-pointer fade-up-active" style="transition-delay: 550ms;">
+<div class="flex text-amber-600">
+<span class="star-icon material-symbols-outlined text-[15px] inline-block transition-transform" data-weight="fill">star</span>
+<span class="star-icon material-symbols-outlined text-[15px] inline-block transition-transform" data-weight="fill">star</span>
+<span class="star-icon material-symbols-outlined text-[15px] inline-block transition-transform" data-weight="fill">star</span>
+<span class="star-icon material-symbols-outlined text-[15px] inline-block transition-transform" data-weight="fill">star</span>
+<span class="star-icon material-symbols-outlined text-[15px] inline-block transition-transform" data-weight="fill">star</span>
+</div>
+<span class="font-semibold text-charcoal-dark">4.9 / 5.0</span>
+<span class="text-charcoal-dark/30">—</span>
+<span class="hover:text-charcoal-dark transition-colors">Shopee Star+ Official Store</span>
+</div>
+</div>
+<!-- Hero Visual Pair with Luxury 3D Perspective Tilt, Ambient Float & Dynamic Light Glare -->
+<div class="lg:col-span-5 relative lookbook-stage py-4 select-none" id="hero-visual-stage">
+<!-- Background ambient blur glow -->
+<div class="absolute -inset-4 bg-gradient-to-tr from-sage-muted/60 via-transparent to-surface-subtle/80 rounded-3xl blur-2xl -z-10 pointer-events-none opacity-70"></div>
+<div class="grid grid-cols-12 gap-4 items-end relative" id="hero-lookbook-container">
+<!-- Primary Card: 3 T-Shirt Flatlay with Interactive 3D & ambient float -->
+<div class="col-span-8 float-primary">
+<div class="lookbook-interactive-card rounded-xl overflow-hidden bg-surface-subtle border border-charcoal-dark/15 aspect-[3/4] cursor-pointer group shadow-lg hover:shadow-2xl transition-all duration-500 relative" id="hero-primary-card" style="transform: perspective(1000px) rotateX(0.02deg) rotateY(-0.01deg) translateZ(10px);">
+<!-- Dynamic Light Reflection Glare -->
+<div class="lookbook-glare" id="primary-card-glare" style="background: radial-gradient(circle at 49.5648% 5.9073%, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.1) 42%, transparent 75%);"></div>
+<!-- Luxury Editorial Floating Badge -->
+
+<!-- Image element -->
+<img alt="HALVORA Tri-Color Essential Lookbook" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP1kljc9Icx7c8_rC0yS8SkUqbq7gYNqtVFjx_5_x3QvHWZP_Xp4yExDlhQcc_xuQoKMDfx0a6jqogJxRInAMVfYfwis44MLWUZTT0-ZArkXnkWcBxnSB__UjhcaxTJnQu_f2nWmZf33VRhIaLPOFq8-oh2guKx2RtubHJmi3YA_CRGGQhbI-7SxLc1dEssU4ermXXwMHJmHt1Bzn8HKAKJI_DbhtZ1tG7fgQLhAh8UKEoid03l5YQ20ajIZC5Gfqd-DY">
+</div>
+</div>
+<!-- Secondary Card: Model Fitting with layered counter-parallax and ambient float -->
+<div class="col-span-4 float-secondary self-end -ml-4 z-20">
+<div class="lookbook-interactive-card rounded-xl overflow-hidden bg-surface-subtle border border-charcoal-dark/15 aspect-[3/4] cursor-pointer group shadow-xl hover:shadow-2xl transition-all duration-500 relative ring-4 ring-page-bg" id="hero-secondary-card" style="transform: perspective(1000px) rotateX(-0.01deg) rotateY(0.01deg) translateZ(26px);">
+<!-- Dynamic Light Reflection Glare -->
+<div class="lookbook-glare" id="secondary-card-glare" style="background: radial-gradient(circle at 50.4352% 5.9073%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.12) 40%, transparent 70%);"></div>
+<!-- Quality Tag Pill -->
+<div class="absolute top-2.5 right-2.5 z-30 bg-page-bg/90 backdrop-blur-md text-charcoal-dark px-2 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase border border-charcoal-dark/10 shadow-xs">
+        100% Combed
+      </div>
+<!-- Image element -->
+<img alt="HALVORA Fit Angle" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwlCpow0iaz-JZhthylMFdzyS6-hDjSU-66ExS8KyRXAH2QENG18xlk6k2bN-M0mjSY6GTey9kVVGoCW9HUZK0A_zpL_pRBONeLy-bzGM2vGBpN00QtNBiRNRY7BNTiwG0xm8dmRepSKqEPC9hK6bR1Gd-8xnJrlJwvc9cSzjSWdzBSJUnttxFE6oSruu3epM0cu2Hy0B_018kQX9CQ2Bfm2SRUiwek5j0paEQR5-KMIVdGwnYbvUwOrIZlyTmktB79RQ">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Clean Tabbed Product Catalog (Animated switch + hover interactions) -->
+<section class="py-16 md:py-24 border-b border-charcoal-dark/10" id="katalog">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div>
+<span class="text-xs uppercase tracking-widest text-primary font-medium block mb-2">Koleksi Esensial</span>
+<h2 class="text-3xl md:text-4xl font-semibold text-charcoal-dark tracking-tight">Katalog Kaos Polos O-Neck</h2>
+</div>
+<p class="text-sm text-secondary max-w-md">
+          Potongan klasik serbaguna dengan jahitan presisi standar ekspor. Tersedia dalam 3 palet warna netral utama.
+        </p>
+</div>
+<!-- Tab Switcher with pill button styling -->
+<div class="flex items-center gap-3 mb-12 border-b border-charcoal-dark/10 pb-4">
+<button class="tab-btn active px-5 py-2.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark bg-charcoal-dark text-page-bg shadow-sm transition-all duration-200" id="tab-btn-24s" onclick="switchCatalog('24s')">
+          Cotton Combed 24s (Tebal &amp; Berstruktur)
+        </button>
+<button class="tab-btn px-5 py-2.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark/20 text-secondary hover:text-charcoal-dark hover:border-charcoal-dark transition-all duration-200" id="tab-btn-30s" onclick="switchCatalog('30s')">
+          Cotton Combed 30s (Ringan &amp; Sejuk)
+        </button>
+</div>
+<!-- Tab Content: 24s (Default) -->
+<div class="catalog-grid grid grid-cols-1 md:grid-cols-3 gap-8" id="catalog-24s">
+<!-- 24s Hitam -->
+<div class="catalog-card group flex flex-col justify-between p-3 rounded-xl border border-transparent hover:border-charcoal-dark/10 bg-page-bg">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-surface-subtle border border-charcoal-dark/10 mb-4">
+<img alt="HALVORA Kaos Polos Hitam 24s" class="card-img w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8p-jBhW5Tt0iOKK0q24B_jLTd-Z5z-F6wMmyXm8M31eJssZbD6keUdNbtk1e5FbfXDSZDpedmiji_9WNBbNwG5KCeUSBCMNun-_3eosQw3UJdMrFbJ9DHG6tdgK-dh-BxGzR0IVaJSBltEbZ-R3n7GLxsqy0Ia1Et2RgnuuoX3RmGcFZAki--TOnSMIJ2oK_cODSAAMj9GqA2u7DBmgv7ObdLGEkDTA8WQ5ueJ3bYlFdA0LQesailDhx5Dfr0cn5E5Lw">
+<span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-charcoal-dark px-2.5 py-1 text-[11px] font-semibold tracking-wider uppercase rounded-sm border border-charcoal-dark/5 shadow-xs">
+              24s • 185 GSM
+            </span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-3.5 h-3.5 rounded-full bg-swatch-black border border-stone-300 ring-2 ring-transparent group-hover:ring-charcoal-dark/20 transition-all"></span>
+<span class="text-xs text-secondary tracking-wide">Hitam Solid (Jet Black)</span>
+</div>
+<h3 class="text-base font-semibold text-charcoal-dark group-hover:text-primary transition-colors">Kaos Polos 24s — Hitam Solid</h3>
+<p class="text-xs text-secondary mt-1 mb-3">Tebal berstruktur, tidak menerawang, tahan cuci.</p>
+<div class="flex items-center gap-2 text-sm">
+<span class="font-semibold text-charcoal-dark">Rp 69.000</span>
+<span class="text-xs text-secondary line-through">Rp 99.000</span>
+<span class="text-[11px] text-primary font-medium tracking-wide bg-primary/10 px-1.5 py-0.5 rounded">Hemat 30%</span>
+</div>
+<div class="mt-4 pt-3 border-t border-charcoal-dark/10">
+<a class="inline-flex items-center gap-1.5 text-xs font-medium text-charcoal-dark hover:text-primary transition-colors underline underline-offset-4" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank">
+<span class="">Lihat di Shopee</span>
+</a>
+</div>
+</div>
+</div>
+<!-- 24s Abu Tua -->
+<div class="catalog-card group flex flex-col justify-between p-3 rounded-xl border border-transparent hover:border-charcoal-dark/10 bg-page-bg">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-surface-subtle border border-charcoal-dark/10 mb-4">
+<img alt="HALVORA Kaos Polos Abu Tua 24s" class="card-img w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6m-pbPUmayNEpl1BAdrVR8u_0Fgil_DaOmpOaLEcEXKes_OUsPz0QQVuVfhbawlOsuKlG7s1mzrAL37DJvRiYXb7US5aSlOUk1mzGSPHLz2G6NORUvZo9Gx2BvwaHLvYwTJsaNHzLEAqmw2IwMy0bweL81JDIEhaZNKuMtzFMkD-zIfOPtqtJSVXKVGtS4MoaVZzvHYuz3ErMl43g9EI5ODb8WOplLmCwk3JecNmCq_0p1ls0RIFsY8gkYwCNDfS7LHk">
+<span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-charcoal-dark px-2.5 py-1 text-[11px] font-semibold tracking-wider uppercase rounded-sm border border-charcoal-dark/5 shadow-xs">
+              24s • 185 GSM
+            </span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-3.5 h-3.5 rounded-full bg-swatch-charcoal border border-stone-300 ring-2 ring-transparent group-hover:ring-charcoal-dark/20 transition-all"></span>
+<span class="text-xs text-secondary tracking-wide">Abu Tua (Charcoal Grey)</span>
+</div>
+<h3 class="text-base font-semibold text-charcoal-dark group-hover:text-primary transition-colors">Kaos Polos 24s — Abu Tua</h3>
+<p class="text-xs text-secondary mt-1 mb-3">Warna netral bernuansa muted, padat dan tegap.</p>
+<div class="flex items-center gap-2 text-sm">
+<span class="font-semibold text-charcoal-dark">Rp 69.000</span>
+<span class="text-xs text-secondary line-through">Rp 99.000</span>
+<span class="text-[11px] text-primary font-medium tracking-wide bg-primary/10 px-1.5 py-0.5 rounded">Hemat 30%</span>
+</div>
+<div class="mt-4 pt-3 border-t border-charcoal-dark/10">
+<a class="inline-flex items-center gap-1.5 text-xs font-medium text-charcoal-dark hover:text-primary transition-colors underline underline-offset-4" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank">
+<span class="">Lihat di Shopee</span>
+</a>
+</div>
+</div>
+</div>
+<!-- 24s Putih Bersih -->
+<div class="catalog-card group flex flex-col justify-between p-3 rounded-xl border border-transparent hover:border-charcoal-dark/10 bg-page-bg">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-surface-subtle border border-charcoal-dark/10 mb-4">
+<img alt="HALVORA Kaos Polos Putih 24s" class="card-img w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-UGf_PqAtZaa1Nkt66Gbux3ws3y2k-dsCMPbjFLhKnKcgqzwH7zdN-LhvUawL-2esZAgcP-acyXWoW_dNJjkLBsL011xzq1gL0VIVIKguzvHK7QYiQBRX1ioZfJ4A5bkbG6iD-R5yJxuUQXLehVQF_UiQW7CfmSMqhya12AW0SFhyu0eTDzNDy-aVmlEjwkC45RW0IIDWbp61GhCRoDsM2RCW18U9Rr5FR551rEmGOtbqb1-4ACRwFUg3zuPe-22dcjk">
+<span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-charcoal-dark px-2.5 py-1 text-[11px] font-semibold tracking-wider uppercase rounded-sm border border-charcoal-dark/5 shadow-xs">
+              24s • 185 GSM
+            </span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-3.5 h-3.5 rounded-full bg-swatch-white border border-charcoal-dark/30 ring-2 ring-transparent group-hover:ring-charcoal-dark/20 transition-all"></span>
+<span class="text-xs text-secondary tracking-wide">Putih Bersih (Clean White)</span>
+</div>
+<h3 class="text-base font-semibold text-charcoal-dark group-hover:text-primary transition-colors">Kaos Polos 24s — Putih Bersih</h3>
+<p class="text-xs text-secondary mt-1 mb-3">Gramasi rapat dijamin aman 100% tanpa nerawang.</p>
+<div class="flex items-center gap-2 text-sm">
+<span class="font-semibold text-charcoal-dark">Rp 69.000</span>
+<span class="text-xs text-secondary line-through">Rp 99.000</span>
+<span class="text-[11px] text-primary font-medium tracking-wide bg-primary/10 px-1.5 py-0.5 rounded">Hemat 30%</span>
+</div>
+<div class="mt-4 pt-3 border-t border-charcoal-dark/10">
+<a class="inline-flex items-center gap-1.5 text-xs font-medium text-charcoal-dark hover:text-primary transition-colors underline underline-offset-4" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank">
+<span class="">Lihat di Shopee</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab Content: 30s (Initially Hidden) -->
+<div class="catalog-grid grid grid-cols-1 md:grid-cols-3 gap-8 hidden" id="catalog-30s">
+<!-- 30s Hitam -->
+<div class="catalog-card group flex flex-col justify-between p-3 rounded-xl border border-transparent hover:border-charcoal-dark/10 bg-page-bg">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-surface-subtle border border-charcoal-dark/10 mb-4">
+<img alt="HALVORA Kaos Polos Hitam 30s" class="card-img w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1bE2nAoGrrPqFdOSU6ZC8HgpS2L4sQwLxDavahWatd1WQJ6uaccw-uI904x3aZzYapvbVCFPW30xQdjQap0i6W_36TL7YHoRjkktssvfva1P_JF2oo6dyQV5ai-czGOO_gteVdiwZrXAsS_JeDKIDs9NcX_bdXVkavcltARE587PcGHaYq-iF1nMixg1Ss_Ed0vVbZodv9jrj_MeGsbFvFh_ZeDo72ANTzepNwhR8AmmuvQVpYiBumRsYFvg3OpNXmQk">
+<span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-charcoal-dark px-2.5 py-1 text-[11px] font-semibold tracking-wider uppercase rounded-sm border border-charcoal-dark/5 shadow-xs">
+              30s • 145 GSM
+            </span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-3.5 h-3.5 rounded-full bg-swatch-black border border-stone-300 ring-2 ring-transparent group-hover:ring-charcoal-dark/20 transition-all"></span>
+<span class="text-xs text-secondary tracking-wide">Hitam Solid 30s</span>
+</div>
+<h3 class="text-base font-semibold text-charcoal-dark group-hover:text-primary transition-colors">Kaos Polos 30s — Hitam Solid</h3>
+<p class="text-xs text-secondary mt-1 mb-3">Ringan, breathable, jatuh natural di badan seharian.</p>
+<div class="flex items-center gap-2 text-sm">
+<span class="font-semibold text-charcoal-dark">Rp 65.000</span>
+<span class="text-xs text-secondary line-through">Rp 95.000</span>
+<span class="text-[11px] text-primary font-medium tracking-wide bg-primary/10 px-1.5 py-0.5 rounded">Hemat 31%</span>
+</div>
+<div class="mt-4 pt-3 border-t border-charcoal-dark/10">
+<a class="inline-flex items-center gap-1.5 text-xs font-medium text-charcoal-dark hover:text-primary transition-colors underline underline-offset-4" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank">
+<span class="">Lihat di Shopee</span>
+<span class="catalog-arrow material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- 30s Abu Tua -->
+<div class="catalog-card group flex flex-col justify-between p-3 rounded-xl border border-transparent hover:border-charcoal-dark/10 bg-page-bg">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-surface-subtle border border-charcoal-dark/10 mb-4">
+<img alt="HALVORA Kaos Polos Abu Tua 30s" class="card-img w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLdWmrNL27F2D6gia3CMsbWEwlUnN0sf04_WC599nBroTqbIur-XRtoBmcYqGagTcHfe6d8E3vxvtF4AcRP-xEg6s0KBu_jBBJa6egdZRXY4y9vQYzFbNz390stgudwcphITVp60t8vgMPzuERnS_jWUHpIu27B09sE_uI_b5E8-xU9SpYj6qJaNJ0XXXDC9oQAAd0Z61BS4Q5--74LfMOeiJakdoFm12yF4kPZa-Cn7HC2p92vV-yD956LhxMnqZqogM">
+<span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-charcoal-dark px-2.5 py-1 text-[11px] font-semibold tracking-wider uppercase rounded-sm border border-charcoal-dark/5 shadow-xs">
+              30s • 145 GSM
+            </span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-3.5 h-3.5 rounded-full bg-swatch-charcoal border border-stone-300 ring-2 ring-transparent group-hover:ring-charcoal-dark/20 transition-all"></span>
+<span class="text-xs text-secondary tracking-wide">Abu Tua 30s</span>
+</div>
+<h3 class="text-base font-semibold text-charcoal-dark group-hover:text-primary transition-colors">Kaos Polos 30s — Abu Tua</h3>
+<p class="text-xs text-secondary mt-1 mb-3">Adem seketika untuk iklim tropis dan mobilitas tinggi.</p>
+<div class="flex items-center gap-2 text-sm">
+<span class="font-semibold text-charcoal-dark">Rp 65.000</span>
+<span class="text-xs text-secondary line-through">Rp 95.000</span>
+<span class="text-[11px] text-primary font-medium tracking-wide bg-primary/10 px-1.5 py-0.5 rounded">Hemat 31%</span>
+</div>
+<div class="mt-4 pt-3 border-t border-charcoal-dark/10">
+<a class="inline-flex items-center gap-1.5 text-xs font-medium text-charcoal-dark hover:text-primary transition-colors underline underline-offset-4" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank">
+<span class="">Lihat di Shopee</span>
+<span class="catalog-arrow material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- 30s Putih Bersih -->
+<div class="catalog-card group flex flex-col justify-between p-3 rounded-xl border border-transparent hover:border-charcoal-dark/10 bg-page-bg">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-surface-subtle border border-charcoal-dark/10 mb-4">
+<img alt="HALVORA Kaos Polos Putih 30s" class="card-img w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_qcN2zdL0mlfngbbXtn4sP5tvX_sZNaDOb51vJPboAuELq1DghHjZVouwZld3oNggxJkSnulobdpFurH1PsXaIrGWj213M6BZCiwPw-P5C-Goh7q3-2_gebYKjI4ryaUz6rlsIidlYMhejHTlwXDHTxKX_BorybbWnLvaj73NGMxHTU7EeKNuBs6Gwa-cNRd8CA2u8chuiwaEAcvmnPI57icEcx542W1OdMc--RgWz_3D-XpPouXPy8EFkutg8Yb2DMc">
+<span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-charcoal-dark px-2.5 py-1 text-[11px] font-semibold tracking-wider uppercase rounded-sm border border-charcoal-dark/5 shadow-xs">
+              30s • 145 GSM
+            </span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-3.5 h-3.5 rounded-full bg-swatch-white border border-charcoal-dark/30 ring-2 ring-transparent group-hover:ring-charcoal-dark/20 transition-all"></span>
+<span class="text-xs text-secondary tracking-wide">Putih Bersih 30s</span>
+</div>
+<h3 class="text-base font-semibold text-charcoal-dark group-hover:text-primary transition-colors">Kaos Polos 30s — Putih Bersih</h3>
+<p class="text-xs text-secondary mt-1 mb-3">Sirkulasi udara maksimal, sangat sejuk saat disentuh.</p>
+<div class="flex items-center gap-2 text-sm">
+<span class="font-semibold text-charcoal-dark">Rp 65.000</span>
+<span class="text-xs text-secondary line-through">Rp 95.000</span>
+<span class="text-[11px] text-primary font-medium tracking-wide bg-primary/10 px-1.5 py-0.5 rounded">Hemat 31%</span>
+</div>
+<div class="mt-4 pt-3 border-t border-charcoal-dark/10">
+<a class="inline-flex items-center gap-1.5 text-xs font-medium text-charcoal-dark hover:text-primary transition-colors underline underline-offset-4" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank">
+<span class="">Lihat di Shopee</span>
+<span class="catalog-arrow material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Curated Craftsmanship & Material Guide (Interactive Seam Zoom & Focus Lens) -->
+<section class="py-16 md:py-24 bg-surface-subtle border-b border-charcoal-dark/10" id="craftsmanship">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<!-- Section Intro -->
+<div class="max-w-2xl mb-16">
+<span class="text-xs uppercase tracking-widest text-primary font-medium block mb-2">Konstruksi &amp; Material</span>
+<h2 class="text-3xl md:text-4xl font-semibold text-charcoal-dark tracking-tight">Keahlian Jahit &amp; Ketebalan Kain</h2>
+<p class="text-secondary text-sm md:text-base mt-3 leading-relaxed">
+          Setiap detail dipikirkan matang—mulai dari pilihan gramasi katun murni combed 100%, ketahanan rib kerah anti-kerut, hingga jahitan rantai pundak standar ekspor.
+        </p>
+</div>
+<!-- Balanced 2-Column Editorial Grid with interactive seam cards -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+<!-- Left: Cotton Combed 24s -->
+<div class="craft-card p-4 rounded-xl border border-charcoal-dark/10 bg-page-bg/60 space-y-6">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-page-bg border border-charcoal-dark/10 group cursor-zoom-in"><img alt="Detail Konstruksi Jahitan Cotton Combed 24s" class="craft-img w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBHP9-4LVkCjgOB_rK9mD5iLmcRoI4Qeolzqd4U4mbx3aIwkx6g3eOk9hsVzS_O3yg8hDRbGeLWlLXVrJ_iU6d_e1e4m1l_QEerCKCse6H_1ivqaxflInXXz0D8D93IPKaGuTUZzJ5Vhh2ukFYAgIviu4Py8QW194rV6OXqkMii0iAMl-cftE_nvB6MIMpyuTh82wmMqykpTde77TBiC9-FPWuf1vtOOUQYkXnyf2tJUVZW3pTylbLOCUYo-J_SCDvZ0c"><div class="absolute bottom-3 right-3 bg-charcoal-dark/75 backdrop-blur-sm text-stone-200 text-[11px] px-2.5 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5"><span class="material-symbols-outlined text-[13px]">zoom_in</span><span class="">Detail Jahitan Presisi</span></div></div>
+<div class="space-y-3">
+<div class="flex items-center justify-between text-xs tracking-wider uppercase font-semibold text-charcoal-dark border-b border-charcoal-dark/10 pb-2">
+<span class="">Cotton Combed 24s</span>
+<span class="text-secondary font-normal">175 - 185 GSM • Tebal &amp; Berstruktur</span>
+</div>
+<p class="text-sm text-secondary leading-relaxed">
+              Ditenun padat dengan jahitan rantai pundak dan overdeck 3 jarum. Kain jatuh mantap, anti-nerawang untuk warna putih, dan menjaga postur tubuh tetap tegap saat dikenakan.
+            </p>
+<ul class="text-xs text-secondary space-y-1.5 pt-2">
+<li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-primary"></span> 100% serat kapas murni tanpa polyester</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-primary"></span> Kerah O-neck elastis tahan melar berkali-kali</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-primary"></span> Rekomendasi: Kerja casual, hangout elegan, layering blazer</li>
+</ul>
+</div>
+</div>
+<!-- Right: Cotton Combed 30s -->
+<div class="craft-card p-4 rounded-xl border border-charcoal-dark/10 bg-page-bg/60 space-y-6">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-page-bg border border-charcoal-dark/10 group cursor-zoom-in"><img alt="Detail Kerah dan Jahitan Cotton Combed 30s" class="craft-img w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_LWT6m0iXyz3fSinU6Q3t7COJOh8r7FMfZT-rALGwCkakN8MSMyQXT1cNAuBxVTofumIUtwCArbr8HOfRp8X4aqXCsBenncOWEXvv-hgY_cgaIsWErD5GWsbcr4cEH7hiP8Pc5PDDMumF3EMasavNYvxIZ8ng5B_b250WP9i5pXBImgZHbM2CSnZLSrMCjKc5wH4NBK25XA__lPhCdduu9T5OtgwEKmsZ0370hBtrdOww10LdURnuOOugZzYPJVKUfv4"><div class="absolute bottom-3 right-3 bg-charcoal-dark/75 backdrop-blur-sm text-stone-200 text-[11px] px-2.5 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5"><span class="material-symbols-outlined text-[13px]">zoom_in</span><span class="">Detail Kerah &amp; Obras</span></div></div>
+<div class="space-y-3">
+<div class="flex items-center justify-between text-xs tracking-wider uppercase font-semibold text-charcoal-dark border-b border-charcoal-dark/10 pb-2">
+<span class="">Cotton Combed 30s</span>
+<span class="text-secondary font-normal">140 - 150 GSM • Ringan &amp; Sejuk</span>
+</div>
+<p class="text-sm text-secondary leading-relaxed">
+              Rajutan benang halus yang breathable dan ekstra lentur. Memberikan sirkulasi udara optimal dan sensasi adem yang menyegarkan di kulit saat cuaca hangat.
+            </p>
+<ul class="text-xs text-secondary space-y-1.5 pt-2">
+<li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-primary"></span> Daya serap keringat sangat cepat dan higienis</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-primary"></span> Finishing overdeck rapi tanpa sisa serat benang</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-primary"></span> Rekomendasi: Aktivitas outdoor harian, santai akhir pekan</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Editorial Size Guide (Interactive Size Selector & Row Highlighting) -->
+<section class="py-16 md:py-24 border-b border-charcoal-dark/10" id="panduan-ukuran">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<span class="text-xs uppercase tracking-widest text-primary font-medium block mb-2">Inklusif XS – 5XL</span>
+<h2 class="text-3xl md:text-4xl font-semibold text-charcoal-dark tracking-tight">Panduan Ukuran (cm)</h2>
+</div>
+<p class="text-xs md:text-sm text-secondary max-w-sm">
+          Toleransi konveksi ± 1-2 cm. Klik salah satu ukuran di bawah untuk melihat baris panduan yang sesuai.
+        </p>
+</div>
+<!-- Interactive Quick Size Filter Selector -->
+<div class="flex flex-wrap items-center gap-2 mb-6">
+<span class="text-xs text-secondary font-medium mr-1">Pilih Cepat:</span>
+<button class="size-pill px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark/20 text-charcoal-dark" onclick="selectSizeRow('XS')">XS</button>
+<button class="size-pill px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark/20 text-charcoal-dark" onclick="selectSizeRow('S')">S</button>
+<button class="size-pill px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark/20 text-charcoal-dark" onclick="selectSizeRow('M')">M</button>
+<button class="size-pill px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark/20 text-charcoal-dark" onclick="selectSizeRow('L')">L</button>
+<button class="size-pill px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark/20 text-charcoal-dark" onclick="selectSizeRow('XL')">XL</button>
+<button class="size-pill px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark/20 text-charcoal-dark" onclick="selectSizeRow('2XL')">2XL</button>
+<button class="size-pill px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark/20 text-charcoal-dark active" onclick="selectSizeRow('3XL')">3XL</button>
+<button class="size-pill px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark/20 text-charcoal-dark" onclick="selectSizeRow('4XL')">4XL</button>
+<button class="size-pill px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark/20 text-charcoal-dark" onclick="selectSizeRow('5XL')">5XL</button>
+</div>
+<div class="overflow-x-auto border border-charcoal-dark/10 rounded-lg bg-page-bg shadow-sm">
+<table class="w-full text-left border-collapse text-xs md:text-sm">
+<thead>
+<tr class="border-b border-charcoal-dark/10 bg-surface-subtle text-secondary font-semibold uppercase tracking-wider text-[11px]">
+<th class="py-3.5 px-6">Ukuran</th>
+<th class="py-3.5 px-6">Lebar Dada</th>
+<th class="py-3.5 px-6">Panjang Baju</th>
+<th class="py-3.5 px-6">Panjang Lengan</th>
+<th class="py-3.5 px-6">Rekomendasi Berat</th>
+<th class="py-3.5 px-6">Rekomendasi Tinggi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-charcoal-dark/5 text-charcoal-dark" id="size-table-body">
+<tr class="size-row" data-size="XS" onclick="selectSizeRow('XS')">
+<td class="py-3 px-6 font-semibold flex items-center gap-2">
+<span class="">XS</span>
+</td>
+<td class="py-3 px-6">45 cm</td>
+<td class="py-3 px-6">65 cm</td>
+<td class="py-3 px-6">19 cm</td>
+<td class="py-3 px-6 text-secondary">40 - 48 kg</td>
+<td class="py-3 px-6 text-secondary">150 - 160 cm</td>
+</tr>
+<tr class="size-row" data-size="S" onclick="selectSizeRow('S')">
+<td class="py-3 px-6 font-semibold">S</td>
+<td class="py-3 px-6">48 cm</td>
+<td class="py-3 px-6">68 cm</td>
+<td class="py-3 px-6">20 cm</td>
+<td class="py-3 px-6 text-secondary">48 - 56 kg</td>
+<td class="py-3 px-6 text-secondary">158 - 165 cm</td>
+</tr>
+<tr class="size-row" data-size="M" onclick="selectSizeRow('M')">
+<td class="py-3 px-6 font-semibold flex items-center gap-1.5">
+<span class="">M</span>
+<span class="text-[10px] bg-primary text-white font-semibold px-1.5 py-0.5 rounded tracking-wide">Pilihan Populer</span>
+</td>
+<td class="py-3 px-6 font-medium">50 cm</td>
+<td class="py-3 px-6 font-medium">70 cm</td>
+<td class="py-3 px-6 font-medium">21 cm</td>
+<td class="py-3 px-6 font-medium text-charcoal-dark">56 - 65 kg</td>
+<td class="py-3 px-6 font-medium text-charcoal-dark">165 - 172 cm</td>
+</tr>
+<tr class="size-row" data-size="L" onclick="selectSizeRow('L')">
+<td class="py-3 px-6 font-semibold">L</td>
+<td class="py-3 px-6">53 cm</td>
+<td class="py-3 px-6">72 cm</td>
+<td class="py-3 px-6">22 cm</td>
+<td class="py-3 px-6 text-secondary">65 - 75 kg</td>
+<td class="py-3 px-6 text-secondary">170 - 178 cm</td>
+</tr>
+<tr class="size-row" data-size="XL" onclick="selectSizeRow('XL')">
+<td class="py-3 px-6 font-semibold">XL</td>
+<td class="py-3 px-6">56 cm</td>
+<td class="py-3 px-6">74 cm</td>
+<td class="py-3 px-6">23 cm</td>
+<td class="py-3 px-6 text-secondary">75 - 85 kg</td>
+<td class="py-3 px-6 text-secondary">175 - 182 cm</td>
+</tr>
+<tr class="size-row" data-size="2XL" onclick="selectSizeRow('2XL')">
+<td class="py-3 px-6 font-semibold">2XL</td>
+<td class="py-3 px-6">59 cm</td>
+<td class="py-3 px-6">76 cm</td>
+<td class="py-3 px-6">24 cm</td>
+<td class="py-3 px-6 text-secondary">85 - 95 kg</td>
+<td class="py-3 px-6 text-secondary">175 - 185 cm</td>
+</tr>
+<tr class="size-row is-selected" data-size="3XL" onclick="selectSizeRow('3XL')">
+<td class="py-3 px-6 font-semibold">3XL</td>
+<td class="py-3 px-6">62 cm</td>
+<td class="py-3 px-6">78 cm</td>
+<td class="py-3 px-6">25 cm</td>
+<td class="py-3 px-6 text-secondary">95 - 105 kg</td>
+<td class="py-3 px-6 text-secondary">175 - 190 cm</td>
+</tr>
+<tr class="size-row" data-size="4XL" onclick="selectSizeRow('4XL')">
+<td class="py-3 px-6 font-semibold">4XL</td>
+<td class="py-3 px-6">65 cm</td>
+<td class="py-3 px-6">80 cm</td>
+<td class="py-3 px-6">26 cm</td>
+<td class="py-3 px-6 text-secondary">105 - 118 kg</td>
+<td class="py-3 px-6 text-secondary">175 - 190 cm</td>
+</tr>
+<tr class="size-row" data-size="5XL" onclick="selectSizeRow('5XL')">
+<td class="py-3 px-6 font-semibold">5XL</td>
+<td class="py-3 px-6">68 cm</td>
+<td class="py-3 px-6">82 cm</td>
+<td class="py-3 px-6">27 cm</td>
+<td class="py-3 px-6 text-secondary">118 - 130 kg</td>
+<td class="py-3 px-6 text-secondary">175 - 192 cm</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-6 p-4 rounded-lg bg-surface-subtle border border-charcoal-dark/10 flex flex-col sm:flex-row items-center justify-between text-xs text-secondary gap-4"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-base">support_agent</span></div><div><p class="font-medium text-charcoal-dark flex items-center gap-2"><span class="">Konsultasi Ukuran &amp; Chat Admin</span><span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span></p><p class="text-secondary mt-0.5">Ragu menentukan ukuran ideal? Customer service kami siap mencocokkan size pas tubuh Anda.</p></div></div><a class="btn-interactive btn-sheen inline-flex items-center gap-2 bg-charcoal-dark hover:bg-charcoal-soft text-page-bg px-4 py-2.5 rounded text-xs font-semibold tracking-wider uppercase transition-colors shrink-0 group" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[15px] transition-transform duration-200 group-hover:scale-110">chat</span><span class="">Chat Admin di Shopee</span><span class="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span></a></div>
+</div>
+</section>
+<!-- 7. Serene Social Proof (Scroll-triggered stagger + subtle elevation glow) -->
+<section class="py-16 md:py-24 border-b border-charcoal-dark/10" id="ulasan">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+<div>
+<span class="text-xs uppercase tracking-widest text-primary font-medium block mb-2">Suara Pelanggan</span>
+<h2 class="text-3xl md:text-4xl font-semibold text-charcoal-dark tracking-tight">Dipercaya Pengguna Harian</h2>
+</div>
+<div class="text-xs text-secondary flex items-center gap-2">
+<span class="">Nilai Rata-rata Toko</span>
+<span class="font-semibold text-charcoal-dark">4.9 / 5.0</span>
+<span class="">(3.800+ Ulasan Shopee)</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Review 1 -->
+<div class="review-card fade-up-init p-6 rounded-lg bg-surface-subtle border border-charcoal-dark/10 flex flex-col justify-between fade-up-active" style="transition-delay: 100ms;">
+<div>
+<div class="flex text-amber-600 mb-4">
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+</div>
+<p class="text-sm text-charcoal-dark leading-relaxed font-normal italic">
+              "Kualitas bahannya beneran rapi. Yang 24s tebalnya mantap, jatuh berstruktur dan gak gerah. Yang putih aman tidak menerawang sama sekali."
+            </p>
+</div>
+<div class="pt-6 mt-6 border-t border-charcoal-dark/10 flex items-center justify-between text-xs text-secondary">
+<div>
+<p class="font-medium text-charcoal-dark">Dimas R.</p>
+<p class="">Membeli: 24s Putih &amp; Hitam (L)</p>
+</div>
+<span class="text-[11px] uppercase tracking-wider text-primary font-medium">Verified</span>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="review-card fade-up-init p-6 rounded-lg bg-surface-subtle border border-charcoal-dark/10 flex flex-col justify-between fade-up-active" style="transition-delay: 220ms;">
+<div>
+<div class="flex text-amber-600 mb-4">
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+</div>
+<p class="text-sm text-charcoal-dark leading-relaxed font-normal italic">
+              "Sangat terbantu ada opsi size besar hingga 5XL dengan pola leher yang pas, tidak melorot atau kedodoran. Potongannya sangat proporsional."
+            </p>
+</div>
+<div class="pt-6 mt-6 border-t border-charcoal-dark/10 flex items-center justify-between text-xs text-secondary">
+<div>
+<p class="font-medium text-charcoal-dark">Bagas Prasetyo</p>
+<p class="">Membeli: 24s Abu Tua (3XL)</p>
+</div>
+<span class="text-[11px] uppercase tracking-wider text-primary font-medium">Verified</span>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="review-card fade-up-init p-6 rounded-lg bg-surface-subtle border border-charcoal-dark/10 flex flex-col justify-between fade-up-active" style="transition-delay: 340ms;">
+<div>
+<div class="flex text-amber-600 mb-4">
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[15px]" data-weight="fill">star</span>
+</div>
+<p class="text-sm text-charcoal-dark leading-relaxed font-normal italic">
+              "30s nya enak sekali buat harian. Ringan, menyerap keringat dan adem. Dicuci mesin berkali-kali warnanya tetap solid dan kerah tidak bergelombang."
+            </p>
+</div>
+<div class="pt-6 mt-6 border-t border-charcoal-dark/10 flex items-center justify-between text-xs text-secondary">
+<div>
+<p class="font-medium text-charcoal-dark">Fadhil K.</p>
+<p class="">Membeli: 30s Hitam (XL)</p>
+</div>
+<span class="text-[11px] uppercase tracking-wider text-primary font-medium">Verified</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. Editorial Callout Banner with Interactive CTA -->
+<section class="py-16 bg-charcoal-dark text-stone-100">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+<div class="space-y-2">
+<h3 class="text-2xl md:text-3xl font-semibold tracking-tight">Mulai dengan Koleksi Esensial HALVORA</h3>
+<p class="text-sm text-stone-400 max-w-xl">
+          Tersedia kemudahan transaksi resmi, jaminan keaslian katun, dan pengiriman harian melalui Shopee Mall Official Store.
+        </p>
+</div>
+<div>
+<a class="btn-interactive btn-sheen btn-sheen-light inline-flex items-center gap-2.5 bg-stone-100 hover:bg-white text-charcoal-dark px-7 py-3.5 rounded text-sm font-semibold tracking-wide transition-all whitespace-nowrap shadow-sm group overflow-hidden" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-base transition-transform duration-200 group-hover:scale-110">storefront</span><span class="">Kunjungi Toko Shopee</span><span class="material-symbols-outlined text-base transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span></a>
+</div>
+</div>
+</section>
+</main>
+<!-- 9. Editorial Minimalist Footer -->
+<footer class="bg-page-bg border-t border-charcoal-dark/10 text-charcoal-dark py-12 md:py-16">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
+<!-- Col 1 -->
+<div class="md:col-span-5 space-y-4">
+<div class="flex items-center gap-3">
+<img alt="HALVORA Logo" class="w-7 h-7 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaYLSK7FT9vt4JsUxAsRqTiivgYl1gh9aU5JMrVgBGrW1bg9ncohy0kHFkmTaQqPdT4Dhk_mfazfJVYFPGDqNr-4qvuaymkLxvla4gag05vtHzOptJ9DH9EGLlaHBrSuJvDxYdJc82DqU-UTH7Qg8lZUpzaZyaTTuVmBFAZ0obJugFoUEWbIzFd6s3hM9J_8WonU7KoP65u_vqwBEpL4BmGNIKfF8vtyyNkrDBbBU3-zfLhOhfHyADT3gCRzm8n9fhALc">
+<span class="text-base font-semibold tracking-[0.2em] text-charcoal-dark uppercase">
+            HALVORA
+          </span>
+</div>
+<p class="text-xs md:text-sm text-secondary leading-relaxed max-w-sm">
+          Elevating everyday wardrobe essentials through pure combed cotton, precise regular fit tailoring, and honest craftsmanship.
+        </p>
+</div>
+<!-- Col 2 -->
+<div class="md:col-span-3 space-y-3">
+<h4 class="text-xs uppercase tracking-widest text-charcoal-dark font-semibold">Koleksi</h4>
+<ul class="space-y-2 text-xs text-secondary">
+<li class=""><button class="hover:text-charcoal-dark transition-colors inline-flex items-center gap-1 group" onclick="switchCatalog('24s')"><span class="">Cotton Combed 24s</span><span class="opacity-0 group-hover:opacity-100 transition-opacity">→</span></button></li>
+<li class=""><button class="hover:text-charcoal-dark transition-colors inline-flex items-center gap-1 group" onclick="switchCatalog('30s')"><span class="">Cotton Combed 30s</span><span class="opacity-0 group-hover:opacity-100 transition-opacity">→</span></button></li>
+<li class=""><a class="hover:text-charcoal-dark transition-colors" href="#panduan-ukuran">Panduan Ukuran (XS - 5XL)</a></li>
+</ul>
+</div>
+<!-- Col 3 -->
+<div class="md:col-span-4 space-y-3">
+<h4 class="text-xs uppercase tracking-widest text-charcoal-dark font-semibold">Layanan &amp; Belanja</h4>
+<ul class="space-y-2 text-xs text-secondary">
+<li class="">
+<a class="hover:text-charcoal-dark transition-colors inline-flex items-center gap-1.5 group" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank">
+<span class="">Shopee Official Store</span>
+<span class="material-symbols-outlined text-[13px] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">arrow_outward</span>
+</a>
+</li>
+<li class=""><a class="hover:text-charcoal-dark transition-colors" href="#ulasan">Ulasan Pelanggan Terverifikasi</a></li>
+<li class=""><a class="hover:text-charcoal-dark transition-colors" href="https://shopee.co.id" rel="noopener noreferrer" target="_blank">Ketentuan Garansi Tukar Ukuran</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-charcoal-dark/10 flex flex-col md:flex-row items-center justify-between text-xs text-secondary gap-3">
+<p class="">© 2025 HALVORA Essentials. Crafted with pure combed cotton. All rights reserved.</p>
+<p class="text-[11px] tracking-wide text-charcoal-dark/60 uppercase">Jakarta, Indonesia • Shopee Star+ Partner</p>
+</div>
+</div>
+</footer>
+<!-- Pure Vanilla JS for Motion & Interaction Engine -->
+<script>
+  // 1. Navigation Sticky Scroll Elevation
+  const nav = document.getElementById('main-nav');
+  const navContainer = document.getElementById('nav-container');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      nav.classList.add('shadow-sm', 'bg-page-bg/95');
+      nav.classList.remove('bg-page-bg/90');
+      navContainer.classList.remove('h-20');
+      navContainer.classList.add('h-16');
+    } else {
+      nav.classList.remove('shadow-sm', 'bg-page-bg/95');
+      nav.classList.add('bg-page-bg/90');
+      navContainer.classList.remove('h-16');
+      navContainer.classList.add('h-20');
+    }
+  }, { passive: true });
+
+  // 2. Intersection Observer for Smooth Scroll Entrances
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -40px 0px'
+  };
+
+  const entranceObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-up-active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-up-init').forEach(el => {
+    entranceObserver.observe(el);
+  });
+
+  // 3. Smooth Tab Switching with Animated Cross-fade & Indicator
+  function switchCatalog(variant) {
+    const cat24s = document.getElementById('catalog-24s');
+    const cat30s = document.getElementById('catalog-30s');
+    const btn24s = document.getElementById('tab-btn-24s');
+    const btn30s = document.getElementById('tab-btn-30s');
+
+    const activeBtnClasses = 'tab-btn active px-5 py-2.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark bg-charcoal-dark text-page-bg shadow-sm transition-all duration-200';
+    const inactiveBtnClasses = 'tab-btn px-5 py-2.5 rounded text-xs font-semibold uppercase tracking-wider border border-charcoal-dark/20 text-secondary hover:text-charcoal-dark hover:border-charcoal-dark transition-all duration-200';
+
+    const currentCat = variant === '24s' ? cat30s : cat24s;
+    const nextCat = variant === '24s' ? cat24s : cat30s;
+
+    if (!nextCat.classList.contains('hidden')) return; // already visible
+
+    // Animate out current
+    currentCat.classList.add('tab-transitioning');
+    
+    setTimeout(() => {
+      currentCat.classList.add('hidden');
+      currentCat.classList.remove('tab-transitioning');
+      
+      // Animate in next
+      nextCat.classList.remove('hidden');
+      nextCat.classList.add('tab-transitioning');
+      
+      // Force repaint
+      void nextCat.offsetWidth;
+      nextCat.classList.remove('tab-transitioning');
+    }, 180);
+
+    if (variant === '24s') {
+      btn24s.className = activeBtnClasses;
+      btn30s.className = inactiveBtnClasses;
+    } else {
+      btn30s.className = activeBtnClasses;
+      btn24s.className = inactiveBtnClasses;
+    }
+  }
+
+  // 4. Interactive Size Selector Matrix Highlight
+  function selectSizeRow(sizeCode) {
+    const rows = document.querySelectorAll('#size-table-body tr');
+    const pills = document.querySelectorAll('.size-pill');
+
+    pills.forEach(pill => {
+      if (pill.textContent.trim() === sizeCode) {
+        pill.classList.add('active');
+      } else {
+        pill.classList.remove('active');
+      }
+    });
+
+    rows.forEach(row => {
+      if (row.getAttribute('data-size') === sizeCode) {
+        row.classList.add('is-selected');
+        row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        row.classList.remove('is-selected');
+      }
+    });
+  }
+
+  // 5. Luxury 3D Perspective Tilt & Light Glare Movement Engine
+  (function initHeroTilt() {
+    const stage = document.getElementById('hero-visual-stage');
+    const primaryCard = document.getElementById('hero-primary-card');
+    const secondaryCard = document.getElementById('hero-secondary-card');
+    const primaryGlare = document.getElementById('primary-card-glare');
+    const secondaryGlare = document.getElementById('secondary-card-glare');
+
+    if (!stage || !primaryCard || !secondaryCard) return;
+
+    let rafId = null;
+    let targetTiltX = 0;
+    let targetTiltY = 0;
+    let currentTiltX = 0;
+    let currentTiltY = 0;
+    let isHovered = false;
+
+    // Smooth lerp loop for fluid physics
+    function updateTilt() {
+      currentTiltX += (targetTiltX - currentTiltX) * 0.085;
+      currentTiltY += (targetTiltY - currentTiltY) * 0.085;
+
+      // Primary Card: direct tilt response
+      primaryCard.style.transform = `perspective(1000px) rotateX(${currentTiltX.toFixed(2)}deg) rotateY(${currentTiltY.toFixed(2)}deg) translateZ(10px)`;
+
+      // Secondary Card: subtle counter-parallax angle (+2.5deg initial tilt)
+      const secTiltX = (-currentTiltX * 0.7).toFixed(2);
+      const secTiltY = (-currentTiltY * 0.7).toFixed(2);
+      secondaryCard.style.transform = `perspective(1000px) rotateX(${secTiltX}deg) rotateY(${secTiltY}deg) translateZ(26px)`;
+
+      if (isHovered || Math.abs(targetTiltX - currentTiltX) > 0.02 || Math.abs(targetTiltY - currentTiltY) > 0.02) {
+        rafId = requestAnimationFrame(updateTilt);
+      } else {
+        rafId = null;
+      }
+    }
+
+    stage.addEventListener('mousemove', (e) => {
+      const rect = stage.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const normX = (x / rect.width) * 2 - 1; // -1 to 1
+      const normY = (y / rect.height) * 2 - 1; // -1 to 1
+
+      // Subtle tilt angles (up to 7 deg)
+      targetTiltX = -normY * 7.5;
+      targetTiltY = normX * 8.5;
+
+      // Update dynamic reflection glare highlights
+      if (primaryGlare) {
+        const pX = (x / rect.width) * 100;
+        const pY = (y / rect.height) * 100;
+        primaryGlare.style.background = `radial-gradient(circle at ${pX}% ${pY}%, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.1) 42%, transparent 75%)`;
+      }
+      if (secondaryGlare) {
+        const sX = 100 - (x / rect.width) * 100;
+        const sY = (y / rect.height) * 100;
+        secondaryGlare.style.background = `radial-gradient(circle at ${sX}% ${sY}%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.12) 40%, transparent 70%)`;
+      }
+
+      if (!isHovered) {
+        isHovered = true;
+        if (!rafId) rafId = requestAnimationFrame(updateTilt);
+      }
+    });
+
+    stage.addEventListener('mouseleave', () => {
+      isHovered = false;
+      targetTiltX = 0;
+      targetTiltY = 0;
+      if (!rafId) rafId = requestAnimationFrame(updateTilt);
+    });
+  })();
+</script>
+
+
+</body></html>
