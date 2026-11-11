@@ -1,0 +1,115 @@
+---
+import Icon from './Icon.astro';
+import { ukuran, SHOPEE_24S } from '../data/produk';
+---
+<section class="
+  border-b border-charcoal-dark/10 py-16
+  md:py-24
+" id="panduan-ukuran">
+  <div class="
+    mx-auto max-w-7xl px-6
+    lg:px-12
+  ">
+    <div class="
+      mb-8 flex flex-col justify-between gap-4
+      md:flex-row md:items-end
+    ">
+      <div>
+        <span class="
+          mb-2 block text-xs font-medium tracking-widest text-primary uppercase
+        ">Ukuran XS – 5XL</span>
+        <h2 class="
+          text-3xl font-semibold tracking-tight
+          md:text-4xl
+        ">Panduan Ukuran (cm)</h2>
+      </div>
+      <p class="
+        max-w-sm text-xs text-secondary
+        md:text-sm
+      ">Toleransi ukuran ± 1-2 cm. Klik salah satu ukuran untuk menyorot barisnya.</p>
+    </div>
+
+    <div class="mb-6 flex flex-wrap items-center gap-2">
+      <span class="mr-1 text-xs font-medium text-secondary">Pilih cepat:</span>
+      {ukuran.map((u) => (
+        <button type="button" data-size-pill={u.size} class="
+          size-pill rounded-sm border border-charcoal-dark/20 px-3 py-1.5
+          text-xs font-semibold tracking-wider uppercase
+        ">{u.size}</button>
+      ))}
+    </div>
+
+    <div class="
+      overflow-x-auto rounded-lg border border-charcoal-dark/10 bg-page-bg
+    ">
+      <table class="
+        w-full border-collapse text-left text-xs
+        md:text-sm
+      ">
+        <thead>
+          <tr class="
+            border-b border-charcoal-dark/10 bg-surface-subtle text-[11px]
+            font-semibold tracking-wider text-secondary uppercase
+          ">
+            <th class="px-6 py-3.5">Ukuran</th><th class="px-6 py-3.5">Lebar Dada</th><th class="
+              px-6 py-3.5
+            ">Panjang Baju</th>
+            <th class="px-6 py-3.5">Panjang Lengan</th><th class="px-6 py-3.5">Rekomendasi Berat</th><th class="
+              px-6 py-3.5
+            ">Rekomendasi Tinggi</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-charcoal-dark/5">
+          {ukuran.map((u) => (
+            <tr class="size-row" data-size={u.size}>
+              <td class="px-6 py-3 font-semibold">{u.size}</td>
+              <td class="px-6 py-3">{u.dada} cm</td>
+              <td class="px-6 py-3">{u.panjang} cm</td>
+              <td class="px-6 py-3">{u.lengan} cm</td>
+              <td class="px-6 py-3 text-secondary">{u.berat}</td>
+              <td class="px-6 py-3 text-secondary">{u.tinggi}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="
+      mt-6 flex flex-col items-center justify-between gap-4 rounded-lg border
+      border-charcoal-dark/10 bg-surface-subtle p-4 text-xs text-secondary
+      sm:flex-row
+    ">
+      <div class="flex items-center gap-3">
+        <div class="
+          flex size-8 shrink-0 items-center justify-center rounded-full
+          bg-primary/10 text-primary
+        "><Icon name="chat" class="size-4" /></div>
+        <div>
+          <p class="font-medium text-charcoal-dark">Ragu menentukan ukuran?</p>
+          <p class="mt-0.5">Tanyakan lewat chat toko di Shopee, kami bantu pilihkan ukuran yang pas.</p>
+        </div>
+      </div>
+      <a class="
+        btn-interactive inline-flex shrink-0 items-center gap-2 rounded-sm
+        bg-charcoal-dark px-4 py-2.5 text-xs font-semibold tracking-wider
+        text-page-bg uppercase
+        hover:bg-charcoal-soft
+        btn-sheen
+      " href={SHOPEE_24S} rel="noopener noreferrer" target="_blank">
+        <span>Chat di Shopee</span><Icon name="arrow-right" class="size-4" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const rows = document.querySelectorAll<HTMLElement>('.size-row');
+  const pills = document.querySelectorAll<HTMLElement>('.size-pill');
+  function select(size: string) {
+    pills.forEach((p) => p.classList.toggle('active', p.dataset.sizePill === size));
+    rows.forEach((r) => r.classList.toggle('is-selected', r.dataset.size === size));
+  }
+  pills.forEach((p) => p.addEventListener('click', () => select(p.dataset.sizePill!)));
+  rows.forEach((r) => r.addEventListener('click', () => select(r.dataset.size!)));
+  select('M');
+</script>

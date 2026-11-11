@@ -1,0 +1,31 @@
+---
+import Icon from './Icon.astro';
+import { SHOPEE_24S } from '../data/produk';
+---
+<section class="bg-charcoal-dark py-16 text-stone-100">
+  <div class="
+    mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-6
+    text-center
+    md:flex-row md:text-left
+    lg:px-12
+  ">
+    <div class="space-y-2">
+      <h3 class="
+        text-2xl font-semibold tracking-tight
+        md:text-3xl
+      ">Mulai dengan Koleksi Esensial Halvora</h3>
+      <p class="max-w-xl text-sm text-stone-400">Checkout langsung lewat Shopee, dengan pembayaran dan pengiriman yang sudah kamu kenal.</p>
+    </div>
+    <a class="
+      btn-interactive inline-flex items-center gap-2.5 rounded-sm
+      bg-shopee-orange px-7 py-3.5 text-sm font-semibold tracking-wide
+      whitespace-nowrap text-white
+      hover:bg-shopee-orange-hover
+      btn-sheen
+    " href={SHOPEE_24S} rel="noopener noreferrer" target="_blank">
+      <Icon name="store" class="size-4" /><span>Kunjungi Toko Shopee</span><Icon name="arrow-right" class="
+        size-4
+      " />
+    </a>
+  </div>
+</section>

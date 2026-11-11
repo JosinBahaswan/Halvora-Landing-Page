@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Katalog from '../components/Katalog.astro';
+import Craftsmanship from '../components/Craftsmanship.astro';
+import PanduanUkuran from '../components/PanduanUkuran.astro';
+import Keunggulan from '../components/Keunggulan.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+import StickyBar from '../components/StickyBar.astro';
+---
+<Layout>
+  <Navbar />
+  <main class="grow">
+    <Hero />
+    <Katalog />
+    <Craftsmanship />
+    <PanduanUkuran />
+    <Keunggulan />
+    <CTA />
+  </main>
+  <Footer />
+  <StickyBar />
+</Layout>

@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+
+interface Props { title?: string; description?: string; }
+const {
+  title = 'HALVORA — Kaos Polos Cotton Combed 24s & 30s',
+  description = 'Kaos polos O-Neck cotton combed 24s dan 30s, regular fit, ukuran XS–5XL. Pilihan warna hitam, abu tua, dan putih. Beli lewat Shopee.',
+} = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const ogImage = Astro.site ? new URL('/og-image.jpg', Astro.site).href : '/og-image.jpg';
+---
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/svg+xml" href="/app_favicon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#FBFBF9" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="font-sans antialiased min-h-screen flex flex-col">
+    <slot />
+    <script>
+      // Navbar mengecil saat di-scroll
+      const nav = document.getElementById('main-nav');
+      const inner = document.getElementById('nav-container');
+      const onScroll = () => {
+        const scrolled = window.scrollY > 20;
+        nav?.classList.toggle('shadow-sm', scrolled);
+        inner?.classList.toggle('h-16', scrolled);
+        inner?.classList.toggle('h-20', !scrolled);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Animasi muncul saat di-scroll
+      const io = new IntersectionObserver((entries, o) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('fade-up-active'); o.unobserve(e.target); }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.fade-up-init').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

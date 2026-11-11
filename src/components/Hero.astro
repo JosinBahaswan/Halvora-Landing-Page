@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets';
+import flatlay from '../assets/hero-flatlay.png';
+import fit from '../assets/hero-fit.png';
+import Icon from './Icon.astro';
+import { SHOPEE_24S } from '../data/produk';
+---
+<section class="
+  overflow-hidden border-b border-charcoal-dark/10 py-14
+  md:py-24
+">
+  <div class="
+    mx-auto max-w-7xl px-6
+    lg:px-12
+  ">
+    <div class="
+      grid grid-cols-1 items-center gap-12
+      lg:grid-cols-12 lg:gap-16
+    ">
+      <div class="
+        space-y-7
+        lg:col-span-7
+      ">
+        <h1 class="
+          text-4xl leading-[1.15] font-semibold tracking-tight
+          md:text-5xl
+          lg:text-[54px]
+        ">
+          The Essential Daily Tee — Nyaman Dipakai Seharian, Tanpa Ribet.
+        </h1>
+        <p class="
+          max-w-xl text-base/relaxed text-secondary
+          md:text-lg
+        ">
+          Kaos polos regular fit dari cotton combed, tersedia dalam dua karakter: 24s yang lebih tebal dan berstruktur, atau 30s yang lebih ringan dan sejuk.
+        </p>
+        <p class="
+          flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium
+          tracking-wide text-secondary
+          md:text-sm
+        ">
+          100% Cotton Combed <span class="text-charcoal-dark/25">•</span> Ukuran XS – 5XL <span class="
+            text-charcoal-dark/25
+          ">•</span> 3 pilihan warna
+        </p>
+        <div class="
+          flex flex-col items-stretch gap-4 pt-3
+          sm:flex-row sm:items-center
+        ">
+          <a class="
+            btn-interactive inline-flex items-center justify-center gap-2.5
+            rounded-sm bg-shopee-orange px-7 py-3.5 text-sm font-semibold
+            tracking-wide text-white
+            hover:bg-shopee-orange-hover
+            btn-sheen
+          " href={SHOPEE_24S} rel="noopener noreferrer" target="_blank">
+            <Icon name="bag" class="size-4" /><span>Beli di Shopee</span>
+          </a>
+          <a class="
+            btn-interactive inline-flex items-center justify-center gap-2
+            rounded-sm border border-charcoal-dark/20 px-6 py-3.5 text-sm
+            font-medium tracking-wide
+            hover:border-charcoal-dark
+          " href="#katalog">
+            <span>Lihat Katalog</span><Icon name="arrow-up-right" class="size-4" />
+          </a>
+        </div>
+      </div>
+
+      <div class="
+        relative py-4 select-none
+        lg:col-span-5
+      ">
+        <div class="
+          pointer-events-none absolute -inset-4 -z-10 rounded-3xl
+          bg-linear-to-tr from-sage-muted/60 via-transparent
+          to-surface-subtle/80 opacity-70 blur-2xl
+        "></div>
+        <div class="relative grid grid-cols-12 items-end gap-4">
+          <div class="float-primary col-span-8">
+            <div class="
+              aspect-3/4 overflow-hidden rounded-xl border
+              border-charcoal-dark/15 bg-surface-subtle shadow-lg
+            ">
+              <Image src={flatlay} alt="Tiga warna kaos polos HALVORA: abu tua, hitam, putih" widths={[400, 640]} sizes="(min-width:1024px) 30vw, 60vw" loading="eager" class="
+                size-full object-cover
+              " />
+            </div>
+          </div>
+          <div class="float-secondary z-20 col-span-4 -ml-4 self-end">
+            <div class="
+              aspect-3/4 overflow-hidden rounded-xl border
+              border-charcoal-dark/15 bg-surface-subtle shadow-xl ring-4
+              ring-page-bg
+            ">
+              <Image src={fit} alt="Model memakai kaos polos HALVORA hitam" widths={[240, 400]} sizes="(min-width:1024px) 15vw, 30vw" loading="eager" class="
+                size-full object-cover
+              " />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

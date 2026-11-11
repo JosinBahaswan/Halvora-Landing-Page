@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-mark.png';
+import Icon from './Icon.astro';
+import { SHOPEE_24S } from '../data/produk';
+---
+<aside class="
+  bg-charcoal-dark px-4 py-2.5 text-center text-xs tracking-wide text-stone-300
+">
+  <p>Toko baru di Shopee — kaos polos cotton combed, ukuran XS sampai 5XL.</p>
+</aside>
+<header class="
+  sticky top-0 z-40 border-b border-charcoal-dark/10 bg-page-bg/90
+  backdrop-blur-md transition-shadow duration-300
+" id="main-nav">
+  <div class="
+    mx-auto flex h-20 max-w-7xl items-center justify-between px-6
+    transition-[height] duration-300
+    lg:px-12
+  " id="nav-container">
+    <a class="group flex items-center gap-3" href="#">
+      <Image src={logo} alt="Logo HALVORA" width={32} height={32} class="
+        size-8 rounded-sm object-contain
+      " />
+      <span class="
+        text-lg font-semibold tracking-[0.2em] uppercase transition-colors
+        group-hover:text-primary
+      ">Halvora</span>
+    </a>
+    <nav class="
+      hidden items-center gap-9 text-sm font-medium tracking-wide text-secondary
+      md:flex
+    ">
+      <a class="
+        nav-link py-1 transition-colors
+        hover:text-charcoal-dark
+      " href="#katalog">Katalog</a>
+      <a class="
+        nav-link py-1 transition-colors
+        hover:text-charcoal-dark
+      " href="#material">Material &amp; Konstruksi</a>
+      <a class="
+        nav-link py-1 transition-colors
+        hover:text-charcoal-dark
+      " href="#panduan-ukuran">Panduan Ukuran</a>
+      <a class="
+        nav-link py-1 transition-colors
+        hover:text-charcoal-dark
+      " href="#keunggulan">Keunggulan</a>
+    </nav>
+    <a class="
+      btn-interactive inline-flex items-center gap-2 rounded-sm bg-charcoal-dark
+      px-4 py-2 text-xs font-semibold tracking-wider text-page-bg uppercase
+      hover:bg-charcoal-soft
+    " href={SHOPEE_24S} rel="noopener noreferrer" target="_blank">
+      <Icon name="bag" class="size-4" /><span>Shopee</span>
+    </a>
+  </div>
+</header>

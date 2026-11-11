@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { produk } from '../data/produk';
+
+const tabs = [
+  { id: '24s', label: 'Cotton Combed 24s', sub: 'Tebal & berstruktur' },
+  { id: '30s', label: 'Cotton Combed 30s', sub: 'Ringan & sejuk' },
+] as const;
+---
+<section class="py-16 md:py-24 border-b border-charcoal-dark/10" id="katalog">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div>
+        <span class="text-xs uppercase tracking-widest text-primary font-medium block mb-2">Koleksi Esensial</span>
+        <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Katalog Kaos Polos O-Neck</h2>
+      </div>
+      <p class="text-sm text-secondary max-w-md">Potongan klasik yang serbaguna, tersedia dalam 3 warna netral. Pilih ketebalan bahan sesuai kebutuhanmu.</p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-3 mb-12 border-b border-charcoal-dark/10 pb-4" role="tablist">
+      {tabs.map((t, i) => (
+        <button type="button" role="tab" data-tab={t.id} aria-selected={i === 0}
+          class:list={['tab-btn px-5 py-2.5 rounded text-xs font-semibold uppercase tracking-wider border transition-all duration-200',
+            i === 0 ? 'border-charcoal-dark bg-charcoal-dark text-page-bg' : 'border-charcoal-dark/20 text-secondary hover:text-charcoal-dark hover:border-charcoal-dark']}>
+          {t.label} <span class="hidden sm:inline normal-case tracking-normal font-medium opacity-70">({t.sub})</span>
+        </button>
+      ))}
+    </div>
+
+    {tabs.map((t, i) => (
+      <div class:list={['catalog-grid grid grid-cols-1 md:grid-cols-3 gap-8', i !== 0 && 'hidden']} data-panel={t.id}>
+        {produk.filter((p) => p.bahan === t.id).map((p) => (
+          <article class="catalog-card group flex flex-col p-3 rounded-xl border border-transparent hover:border-charcoal-dark/10">
+            <div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-surface-subtle border border-charcoal-dark/10 mb-4">
+              <Image src={p.gambar} alt={`HALVORA ${p.nama}`} widths={[400, 640]} sizes="(min-width:768px) 30vw, 90vw" class="card-img w-full h-full object-cover" />
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[11px] font-semibold tracking-wider uppercase rounded-sm border border-charcoal-dark/5">
+                Cotton Combed {p.bahan}
+              </span>
+            </div>
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class={`w-3.5 h-3.5 rounded-full border border-stone-300 ${p.swatch}`}></span>
+              <span class="text-xs text-secondary tracking-wide">{p.warna}</span>
+            </div>
+            <h3 class="text-base font-semibold group-hover:text-primary transition-colors">{p.nama}</h3>
+            <p class="text-xs text-secondary mt-1 mb-3">{p.deskripsi}</p>
+            {p.harga && <p class="text-sm font-semibold mb-3">{p.harga}</p>}
+            <div class="mt-auto pt-3 border-t border-charcoal-dark/10">
+              <a class="inline-flex items-center gap-1.5 text-xs font-medium hover:text-primary transition-colors underline underline-offset-4" href={p.link} rel="noopener noreferrer" target="_blank">
+                Lihat di Shopee <Icon name="arrow-right" class="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  const active = 'border-charcoal-dark bg-charcoal-dark text-page-bg';
+  const inactive = 'border-charcoal-dark/20 text-secondary hover:text-charcoal-dark hover:border-charcoal-dark';
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
+  const panels = document.querySelectorAll<HTMLElement>('[data-panel]');
+
+  function switchTab(id: string) {
+    const next = document.querySelector<HTMLElement>(`[data-panel="${id}"]`);
+    if (!next || !next.classList.contains('hidden')) return;
+    const current = [...panels].find((p) => !p.classList.contains('hidden'));
+    current?.classList.add('tab-transitioning');
+    setTimeout(() => {
+      current?.classList.add('hidden');
+      current?.classList.remove('tab-transitioning');
+      next.classList.remove('hidden');
+      next.classList.add('tab-transitioning');
+      void next.offsetWidth;
+      next.classList.remove('tab-transitioning');
+    }, 180);
+    buttons.forEach((b) => {
+      const on = b.dataset.tab === id;
+      b.setAttribute('aria-selected', String(on));
+      active.split(' ').forEach((c) => b.classList.toggle(c, on));
+      inactive.split(' ').forEach((c) => b.classList.toggle(c, !on));
+    });
+  }
+  buttons.forEach((b) => b.addEventListener('click', () => switchTab(b.dataset.tab!)));
+  // Dipakai tautan di footer
+  document.querySelectorAll<HTMLElement>('[data-switch-tab]').forEach((el) =>
+    el.addEventListener('click', () => switchTab(el.dataset.switchTab!)));
+</script>

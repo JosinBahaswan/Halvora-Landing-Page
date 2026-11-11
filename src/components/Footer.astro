@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-mark.png';
+import Icon from './Icon.astro';
+import { SHOPEE_24S, SHOPEE_30S } from '../data/produk';
+---
+<footer class="
+  border-t border-charcoal-dark/10 pt-12 pb-28
+  md:py-16
+">
+  <div class="
+    mx-auto max-w-7xl px-6
+    lg:px-12
+  ">
+    <div class="
+      mb-12 grid grid-cols-1 gap-10
+      md:grid-cols-12
+    ">
+      <div class="
+        space-y-4
+        md:col-span-5
+      ">
+        <div class="flex items-center gap-3">
+          <Image src={logo} alt="Logo HALVORA" width={28} height={28} class="
+            size-7 rounded-sm object-contain
+          " />
+          <span class="text-base font-semibold tracking-[0.2em] uppercase">Halvora</span>
+        </div>
+        <p class="
+          max-w-sm text-xs/relaxed text-secondary
+          md:text-sm
+        ">Kaos polos cotton combed dengan potongan regular fit, dibuat sederhana dan nyaman dipakai setiap hari.</p>
+      </div>
+      <div class="
+        space-y-3
+        md:col-span-3
+      ">
+        <h4 class="text-xs font-semibold tracking-widest uppercase">Koleksi</h4>
+        <ul class="space-y-2 text-xs text-secondary">
+          <li><a href="#katalog" data-switch-tab="24s" class="
+            transition-colors
+            hover:text-charcoal-dark
+          ">Cotton Combed 24s</a></li>
+          <li><a href="#katalog" data-switch-tab="30s" class="
+            transition-colors
+            hover:text-charcoal-dark
+          ">Cotton Combed 30s</a></li>
+          <li><a href="#panduan-ukuran" class="
+            transition-colors
+            hover:text-charcoal-dark
+          ">Panduan Ukuran (XS - 5XL)</a></li>
+        </ul>
+      </div>
+      <div class="
+        space-y-3
+        md:col-span-4
+      ">
+        <h4 class="text-xs font-semibold tracking-widest uppercase">Belanja</h4>
+        <ul class="space-y-2 text-xs text-secondary">
+          <li><a class="
+            inline-flex items-center gap-1.5 transition-colors
+            hover:text-charcoal-dark
+          " href={SHOPEE_24S} rel="noopener noreferrer" target="_blank">Shopee — Cotton Combed 24s <Icon name="arrow-up-right" class="
+            size-3
+          " /></a></li>
+          <li><a class="
+            inline-flex items-center gap-1.5 transition-colors
+            hover:text-charcoal-dark
+          " href={SHOPEE_30S} rel="noopener noreferrer" target="_blank">Shopee — Cotton Combed 30s <Icon name="arrow-up-right" class="
+            size-3
+          " /></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-charcoal-dark/10 pt-8 text-xs text-secondary">
+      <p>© {new Date().getFullYear()} Halvora. Seluruh hak cipta dilindungi.</p>
+    </div>
+  </div>
+</footer>

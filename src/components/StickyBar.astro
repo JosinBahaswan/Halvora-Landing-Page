@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+import { SHOPEE_24S, SHOPEE_30S } from '../data/produk';
+---
+<div class="
+  fixed inset-x-0 bottom-0 z-50 border-t border-charcoal-dark/10 bg-page-bg/90
+  px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]
+  shadow-[0_8px_30px_rgba(24,24,27,0.06)] backdrop-blur-md
+  md:hidden
+">
+  <div class="flex items-center gap-3">
+    <a class="
+      inline-flex h-[52px] flex-1 items-center justify-center gap-2 rounded-sm
+      bg-shopee-orange text-sm font-semibold text-white
+      hover:bg-shopee-orange-hover
+    " href={SHOPEE_24S} rel="noopener noreferrer" target="_blank">
+      <Icon name="bag" class="size-4" /><span>Beli 24s</span>
+    </a>
+    <a class="
+      inline-flex h-[52px] flex-1 items-center justify-center gap-2 rounded-sm
+      border border-shopee-orange text-sm font-semibold text-shopee-orange
+    " href={SHOPEE_30S} rel="noopener noreferrer" target="_blank">
+      <Icon name="bag" class="size-4" /><span>Beli 30s</span>
+    </a>
+  </div>
+</div>

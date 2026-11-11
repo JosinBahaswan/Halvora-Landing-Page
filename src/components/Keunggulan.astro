@@ -1,0 +1,49 @@
+---
+import Icon from './Icon.astro';
+const poin = [
+  { judul: 'Cotton Combed 24s & 30s', teks: 'Dua pilihan ketebalan: padat berstruktur, atau ringan dan sejuk.' },
+  { judul: 'Regular Fit', teks: 'Potongan pas di badan, tidak kebesaran dan tidak mengekang.' },
+  { judul: 'O-Neck Klasik', teks: 'Kerah bulat sederhana yang mudah dipadukan dengan apa saja.' },
+  { judul: 'Jahitan Kuat', teks: 'Rib, bahu, dan obras dijahit rapi untuk dipakai sehari-hari.' },
+  { judul: '3 Pilihan Warna', teks: 'Abu tua, hitam solid, dan putih bersih.' },
+  { judul: 'Ukuran XS – 5XL', teks: 'Tersedia dari ukuran kecil sampai besar, lengkap dengan panduan ukuran.' },
+];
+---
+<section class="
+  border-b border-charcoal-dark/10 py-16
+  md:py-24
+" id="keunggulan">
+  <div class="
+    mx-auto max-w-7xl px-6
+    lg:px-12
+  ">
+    <div class="mb-14">
+      <span class="
+        mb-2 block text-xs font-medium tracking-widest text-primary uppercase
+      ">Kenapa Halvora</span>
+      <h2 class="
+        text-3xl font-semibold tracking-tight
+        md:text-4xl
+      ">Dasar yang Dibuat dengan Benar</h2>
+    </div>
+    <div class="
+      grid grid-cols-1 gap-6
+      md:grid-cols-2
+      lg:grid-cols-3
+    ">
+      {poin.map((p, i) => (
+        <div class="
+          fade-up-init rounded-lg border border-charcoal-dark/10
+          bg-surface-subtle p-6
+        " style={`transition-delay:${i * 80}ms`}>
+          <div class="
+            mb-4 flex size-8 items-center justify-center rounded-full
+            bg-sage-muted text-sage-deep
+          "><Icon name="check" class="size-4" /></div>
+          <h3 class="mb-1 text-base font-semibold">{p.judul}</h3>
+          <p class="text-sm/relaxed text-secondary">{p.teks}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
