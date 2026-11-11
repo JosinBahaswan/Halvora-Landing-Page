@@ -25,6 +25,13 @@ const ogImage = Astro.site ? new URL('/og-image.jpg', Astro.site).href : '/og-im
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#FBFBF9" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="google-site-verification" content="f025chHKRQKsNFyYMm0XmjVPqB4L2Jrz8xH10JMPQBg" />
+    <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-M927PT9C"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
   </head>
   <body class="font-sans antialiased min-h-screen flex flex-col">
     <slot />
