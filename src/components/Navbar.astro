@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import logo from '../assets/logo-mark.png';
 import Icon from './Icon.astro';
 import { SHOPEE_24S } from '../data/produk';
+const onFaq = Astro.url.pathname.startsWith('/faq');
 ---
 <aside class="
   bg-charcoal-dark px-4 py-2.5 text-center text-xs tracking-wide text-stone-300
@@ -47,6 +48,10 @@ import { SHOPEE_24S } from '../data/produk';
         nav-link py-1 transition-colors
         hover:text-charcoal-dark
       " href="#keunggulan">Keunggulan</a>
+      <a
+        class:list={['nav-link py-1 transition-colors', onFaq ? 'font-semibold text-primary' : 'hover:text-charcoal-dark']}
+        href="/faq"
+        aria-current={onFaq ? 'page' : undefined}>FAQ</a>
     </nav>
     <a class="
       btn-interactive inline-flex items-center gap-2 rounded-sm bg-charcoal-dark

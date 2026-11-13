@@ -5,7 +5,7 @@ import betterTailwind from 'eslint-plugin-better-tailwindcss';
 const customClasses = [
   'btn-interactive', 'nav-link', 'fade-up-init', 'float-primary', 'float-secondary',
   'catalog-card', 'catalog-grid', 'card-img', 'craft-card', 'craft-img',
-  'tab-btn', 'size-row', 'size-pill',
+  'tab-btn', 'size-row', 'size-pill', 'faq-item', 'faq-content', 'faq-icon', 'faq-trigger', 'faq-tab',
 ].map((c) => `^${c}$`);
 
 export default [
