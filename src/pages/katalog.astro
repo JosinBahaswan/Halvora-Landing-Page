@@ -1,0 +1,195 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import { produk, kategori, warna, segera, type WarnaId } from '../data/katalog';
+
+// Filter dibuat otomatis dari data: tidak perlu diubah saat produk bertambah.
+const kategoriAda = [...new Set(produk.map((p) => p.kategori))];
+const warnaAda = [...new Set(produk.flatMap((p) => p.varian.map((v) => v.warna)))] as WarnaId[];
+
+const chip =
+  'rounded-full border border-charcoal-dark/20 px-4 py-1.5 text-sm font-medium text-secondary transition-colors hover:text-charcoal-dark aria-pressed:border-charcoal-dark aria-pressed:bg-charcoal-dark aria-pressed:text-page-bg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary';
+const swatch =
+  'size-7 shrink-0 rounded-full border border-charcoal-dark/25 ring-offset-2 ring-offset-page-bg transition-shadow aria-pressed:ring-2 aria-pressed:ring-charcoal-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary';
+---
+<Layout
+  title="Katalog — HALVORA"
+  description="Katalog kaos polos HALVORA: Cotton Combed 24s dan 30s, regular fit, ukuran XS sampai 5XL, tiga pilihan warna. Checkout lewat Shopee."
+>
+  <Navbar />
+  <main class="grow">
+    <!-- Judul halaman -->
+    <header class="mx-auto max-w-7xl px-6 pt-14 pb-10 md:pt-20 md:pb-12 lg:px-12">
+      <div class="grid gap-6 md:grid-cols-12 md:items-end">
+        <h1 class="text-5xl font-semibold tracking-tighter md:col-span-7 md:text-7xl">Katalog</h1>
+        <p class="max-w-md text-secondary md:col-span-5 md:justify-self-end md:text-lg">
+          Kaos polos dan pakaian harian pria dari Halvora. Pilih warna, lihat ukurannya, lalu checkout di Shopee.
+        </p>
+      </div>
+    </header>
+
+    <!-- Filter (menempel di bawah navbar saat scroll) -->
+    <div class="sticky top-16 z-30 border-y border-charcoal-dark/10 bg-page-bg/90 backdrop-blur-md">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-x-8 gap-y-3 px-6 py-3.5 lg:px-12">
+        {kategoriAda.length > 1 && (
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Kategori">
+            <button type="button" data-kategori="all" aria-pressed="true" class={chip}>Semua</button>
+            {kategoriAda.map((k) => (
+              <button type="button" data-kategori={k} aria-pressed="false" class={chip}>{kategori[k]}</button>
+            ))}
+          </div>
+        )}
+        {warnaAda.length > 1 && (
+          <div class="flex items-center gap-3" role="group" aria-label="Warna">
+            <span class="text-sm text-secondary">Warna</span>
+            <div class="flex items-center gap-3">
+              {warnaAda.map((w) => (
+                <button type="button" data-warna-filter={w} aria-pressed="false" aria-label={warna[w].nama} title={warna[w].nama} class={swatch} style={`background:${warna[w].hex}`}></button>
+              ))}
+            </div>
+            <button type="button" id="warna-reset" hidden class="text-sm underline underline-offset-4 hover:text-primary">Hapus pilihan</button>
+          </div>
+        )}
+        <p class="ml-auto text-sm text-secondary" id="hitung" aria-live="polite">{produk.length} produk</p>
+      </div>
+    </div>
+
+    <!-- Daftar produk -->
+    <section class="mx-auto max-w-7xl px-6 py-12 md:py-16 lg:px-12">
+      <ul class="grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        {produk.map((p, idx) => (
+          <li data-produk data-kategori={p.kategori} data-warna={p.varian.map((v) => v.warna).join(' ')}>
+            <div class="relative aspect-[3/4] overflow-hidden rounded bg-surface-subtle">
+              {p.varian.map((v, i) => (
+                <Image
+                  src={v.gambar}
+                  alt={`${p.nama}, warna ${warna[v.warna].nama}`}
+                  widths={[400, 640, 900]}
+                  sizes="(min-width:1024px) 30vw, (min-width:640px) 45vw, 92vw"
+                  loading={idx < 3 && i === 0 ? 'eager' : 'lazy'}
+                  data-varian={v.warna}
+                  data-aktif={i === 0 ? 'true' : 'false'}
+                  class="absolute inset-0 size-full object-cover opacity-0 transition-opacity duration-300 data-[aktif=true]:opacity-100"
+                />
+              ))}
+            </div>
+
+            <div class="mt-4 flex items-baseline justify-between gap-4">
+              <h2 class="text-lg font-semibold tracking-tight">{p.nama}</h2>
+              {p.harga && <span class="text-sm font-semibold">{p.harga}</span>}
+            </div>
+            <p class="mt-1 text-sm text-secondary">{p.bahan}, {p.potongan}, ukuran {p.ukuran}.</p>
+            <p class="mt-2 text-sm text-secondary">{p.deskripsi}</p>
+
+            <div class="mt-5 flex items-center justify-between gap-4">
+              <div class="flex items-center gap-3" role="group" aria-label={`Pilih warna ${p.nama}`}>
+                {p.varian.map((v, i) => (
+                  <button type="button" data-pilih={v.warna} aria-pressed={i === 0 ? 'true' : 'false'} aria-label={warna[v.warna].nama} title={warna[v.warna].nama} class={swatch} style={`background:${warna[v.warna].hex}`}></button>
+                ))}
+              </div>
+              <span class="text-sm text-secondary" data-nama-warna>{warna[p.varian[0].warna].nama}</span>
+            </div>
+
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-interactive mt-5 inline-flex w-full items-center justify-center gap-2 rounded bg-charcoal-dark px-5 py-3 text-sm font-semibold text-page-bg hover:bg-charcoal-soft"
+            >
+              <Icon name="bag" class="size-4" /><span>Beli di Shopee</span>
+            </a>
+          </li>
+        ))}
+
+        {segera.length > 0 && (
+          <li data-segera>
+            <div class="flex min-h-52 flex-col justify-end rounded bg-surface-subtle p-6 sm:aspect-[3/4]">
+              <h2 class="text-lg font-semibold tracking-tight">Sedang disiapkan</h2>
+              <ul class="mt-3 space-y-1 text-secondary">
+                {segera.map((s) => <li>{s}</li>)}
+              </ul>
+            </div>
+            <p class="mt-4 text-sm text-secondary">Ada yang ingin ditanyakan lebih dulu? Hubungi kami lewat chat toko di Shopee.</p>
+          </li>
+        )}
+      </ul>
+
+      <div id="kosong" hidden class="py-20 text-center">
+        <p class="font-medium">Belum ada produk yang cocok.</p>
+        <p class="mt-1 text-sm text-secondary">Coba kategori atau warna lain.</p>
+        <button type="button" id="reset-semua" class="mt-5 rounded border border-charcoal-dark/20 px-5 py-2.5 text-sm font-medium hover:border-charcoal-dark">Tampilkan semua produk</button>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  const daftarKartu = document.querySelectorAll<HTMLElement>('[data-produk]');
+  const tombolKategori = document.querySelectorAll<HTMLButtonElement>('[data-kategori]:is(button)');
+  const tombolWarna = document.querySelectorAll<HTMLButtonElement>('[data-warna-filter]');
+  const hitung = document.getElementById('hitung')!;
+  const kosong = document.getElementById('kosong')!;
+  const resetWarna = document.getElementById('warna-reset');
+  const tileSegera = document.querySelector<HTMLElement>('[data-segera]');
+
+  let kategoriAktif = 'all';
+  let warnaAktif: string | null = null;
+
+  function pilihWarna(kartu: HTMLElement, w: string) {
+    kartu.querySelectorAll<HTMLElement>('[data-varian]').forEach((img) => {
+      img.dataset.aktif = String(img.dataset.varian === w);
+    });
+    kartu.querySelectorAll<HTMLButtonElement>('[data-pilih]').forEach((b) => {
+      b.setAttribute('aria-pressed', String(b.dataset.pilih === w));
+    });
+    const nama = kartu.querySelector<HTMLElement>(`[data-pilih="${w}"]`)?.getAttribute('aria-label');
+    const label = kartu.querySelector<HTMLElement>('[data-nama-warna]');
+    if (label && nama) label.textContent = nama;
+  }
+
+  function terapkan() {
+    let jumlah = 0;
+    daftarKartu.forEach((kartu) => {
+      const punyaWarna = (kartu.dataset.warna ?? '').split(' ');
+      const cocok =
+        (kategoriAktif === 'all' || kartu.dataset.kategori === kategoriAktif) &&
+        (!warnaAktif || punyaWarna.includes(warnaAktif));
+      kartu.hidden = !cocok;
+      if (cocok) {
+        jumlah++;
+        if (warnaAktif) pilihWarna(kartu, warnaAktif);
+      }
+    });
+    if (tileSegera) tileSegera.hidden = kategoriAktif !== 'all' || warnaAktif !== null;
+    hitung.textContent = `${jumlah} produk`;
+    kosong.hidden = jumlah > 0;
+    tombolKategori.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kategori === kategoriAktif)));
+    tombolWarna.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.warnaFilter === warnaAktif)));
+    if (resetWarna) resetWarna.hidden = warnaAktif === null;
+  }
+
+  tombolKategori.forEach((b) =>
+    b.addEventListener('click', () => { kategoriAktif = b.dataset.kategori!; terapkan(); }),
+  );
+  tombolWarna.forEach((b) =>
+    b.addEventListener('click', () => {
+      warnaAktif = warnaAktif === b.dataset.warnaFilter ? null : b.dataset.warnaFilter!;
+      terapkan();
+    }),
+  );
+  resetWarna?.addEventListener('click', () => { warnaAktif = null; terapkan(); });
+  document.getElementById('reset-semua')?.addEventListener('click', () => {
+    kategoriAktif = 'all';
+    warnaAktif = null;
+    terapkan();
+  });
+
+  // Pilih warna langsung di kartu
+  document.querySelectorAll<HTMLButtonElement>('[data-pilih]').forEach((b) =>
+    b.addEventListener('click', () => pilihWarna(b.closest<HTMLElement>('[data-produk]')!, b.dataset.pilih!)),
+  );
+</script>

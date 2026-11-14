@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import logo from '../assets/logo-mark.png';
 import Icon from './Icon.astro';
 import { SHOPEE_24S } from '../data/produk';
+
+const onKatalog = Astro.url.pathname.startsWith('/katalog');
 const onFaq = Astro.url.pathname.startsWith('/faq');
 ---
 <aside class="
@@ -32,10 +34,9 @@ const onFaq = Astro.url.pathname.startsWith('/faq');
       hidden items-center gap-9 text-sm font-medium tracking-wide text-secondary
       md:flex
     ">
-      <a class="
-        nav-link py-1 transition-colors
-        hover:text-charcoal-dark
-      " href="#katalog">Katalog</a>
+      <a class:list={['nav-link py-1 transition-colors', onKatalog ? 'font-semibold text-primary' : 'hover:text-charcoal-dark']}
+        href="/katalog"
+        aria-current={onKatalog ? 'page' : undefined}>Katalog</a>
       <a class="
         nav-link py-1 transition-colors
         hover:text-charcoal-dark
